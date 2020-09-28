@@ -1,0 +1,51 @@
+@page
+@model ContosoUniversity.Pages.Teams.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Team.TeamID" />
+            <div class="form-group">
+                <label asp-for="Team.TeamID" class="control-label"></label>
+                <div>@Html.DisplayFor(model => model.Team.TeamID)</div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.Title" class="control-label"></label>
+                <input asp-for="Team.Title" class="form-control" />
+                <span asp-validation-for="Team.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.Credits" class="control-label"></label>
+                <input asp-for="Team.Credits" class="form-control" />
+                <span asp-validation-for="Team.Credits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.Department" class="control-label"></label>
+                <select asp-for="Team.DepartmentID" class="form-control"
+                        asp-items="@Model.DepartmentNameSL"></select>
+                <span asp-validation-for="Team.DepartmentID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
